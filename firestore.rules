@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Owner = signed in AND has the "owner" custom claim (set only with scripts/setOwnerClaim.js).
+    // To also REQUIRE a second factor, after enrolling MFA replace the body with:
+    //   return request.auth != null && request.auth.token.owner == true
+    //          && request.auth.token.firebase.sign_in_second_factor != null;
+    function isOwner() {
+      return request.auth != null && request.auth.token.owner == true;
+    }
+    function s(v, max) { return v is string && v.size() <= max; }
+
+    function validProperty(d) {
+      return d.keys().hasOnly(['title','type','transaction','price','location','beds','baths','area',
+                               'ownerName','ownerPhone','description','images','createdAt'])
+        && s(d.title, 90) && d.title.size() > 0
+        && d.type in ['residential','commercial']
+        && d.transaction in ['sale','rent']
+        && d.price is number && d.price >= 0 && d.price < 1000000000000
+        && s(d.location, 90)
+        && d.beds is number && d.baths is number && d.area is number
+        && s(d.ownerName, 60) && s(d.ownerPhone, 20) && s(d.description, 1500)
+        && d.images is list && d.images.size() >= 1 && d.images.size() <= 10;
+    }
+    function validAnnouncement(d) {
+      return d.keys().hasOnly(['title','category','date','text','image','createdAt'])
+        && s(d.title, 90) && d.title.size() > 0
+        && d.category in ['Festival','Company','Property','Notice']
+        && s(d.date, 10) && s(d.text, 1200) && s(d.image, 2000);
+    }
+
+    // Public website can read; only the owner can change.
+    match /properties/{id} {
+      allow read: if true;
+      allow create, update: if isOwner() && validProperty(request.resource.data);
+      allow delete: if isOwner();
+    }
+    match /announcements/{id} {
+      allow read: if true;
+      allow create, update: if isOwner() && validAnnouncement(request.resource.data);
+      allow delete: if isOwner();
+    }
+
+    // Visitors can only CREATE a visit request (validated). Only the owner can read or manage.
+    match /appointments/{id} {
+      allow create: if request.resource.data.keys().hasOnly(
+          ['propertyId','propertyTitle','name','phone','date','time','status','createdAt'])
+        && s(request.resource.data.name, 80) && request.resource.data.name.size() > 0
+        && s(request.resource.data.phone, 15) && request.resource.data.phone.size() >= 10
+        && s(request.resource.data.propertyId, 40)
+        && s(request.resource.data.propertyTitle, 120)
+        && request.resource.data.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && s(request.resource.data.time, 10)
+        && request.resource.data.status == 'new';
+      allow read, update, delete: if isOwner();
+    }
+
+    // Owner activity log: append-only. Nobody can edit or delete entries from the app.
+    match /auditLogs/{id} {
+      allow read: if isOwner();
+      allow create: if isOwner()
+        && request.resource.data.keys().hasOnly(['action','detail','uid','email','at'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.at == request.time;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

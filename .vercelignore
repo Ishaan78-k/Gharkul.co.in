@@ -1,0 +1,11 @@
+server.js
+data
+scripts
+start-server.bat
+start-server.sh
+firebase.json
+firestore.rules
+storage.rules
+*.md
+serviceAccountKey.json
+.env

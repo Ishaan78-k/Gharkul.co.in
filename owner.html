@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Owner Dashboard | Sanjeev's Gharkul</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<link rel="stylesheet" href="css/owner.css">
+</head>
+<body class="ownerpage">
+
+<!-- LOGIN -->
+<main id="loginView" class="loginwrap">
+  <form class="card loginbox" id="loginForm">
+    <span class="logo-box"><img src="https://gharkul.co.in/images/logo-white.png" alt="Gharkul"></span>
+    <h2>Owner login</h2>
+    <p class="loc">Sign in to add properties, photos and announcements.</p>
+    <label for="lemail" style="margin-top:16px">Email</label><input id="lemail" type="email" required autocomplete="username">
+    <label for="lpass" style="margin-top:12px">Password</label><input id="lpass" type="password" required autocomplete="current-password">
+    <div id="lmsg" role="alert"></div>
+    <button class="btn btn-green" type="submit" style="width:100%;justify-content:center;margin-top:16px">Sign in</button>
+    <p class="loc" id="demoHint" style="margin-top:14px"></p>
+  </form>
+  <!-- STEP 2: two-factor code -->
+  <form class="card loginbox" id="mfaForm" hidden autocomplete="off">
+    <span class="logo-box"><img src="https://gharkul.co.in/images/logo-white.png" alt="Gharkul"></span>
+    <h2>Two-step verification</h2>
+    <div id="mfaSetup" hidden>
+      <p class="loc">First time: open <b>Google Authenticator</b> or <b>Microsoft Authenticator</b> on your phone, choose <b>Add account → Enter a setup key</b>, type this key (time-based), then enter the 6-digit code it shows.</p>
+      <p class="keybox"><code id="mfaKey"></code></p>
+      <p class="loc"><a id="mfaLink" href="#">Open in authenticator app</a></p>
+    </div>
+    <p class="loc" id="mfaAsk">Enter the 6-digit code from your authenticator app, or a recovery code.</p>
+    <label for="mcode" style="margin-top:14px">Code</label>
+    <input id="mcode" inputmode="numeric" autocomplete="one-time-code" maxlength="12" required>
+    <div id="mmsg" role="alert"></div>
+    <button class="btn btn-green" type="submit" style="width:100%;justify-content:center;margin-top:16px">Verify</button>
+    <p style="margin-top:12px"><button type="button" class="olink" id="mfaBack" style="color:var(--muted)">← Start again</button></p>
+  </form>
+
+  <!-- shown once, right after setup -->
+  <div class="card loginbox" id="recBox" hidden>
+    <h2>Save your recovery codes</h2>
+    <p class="loc">Each code works once if you lose your phone. They are shown <b>only now</b>. Write them down or store them in a password manager.</p>
+    <pre class="keybox" id="recCodes"></pre>
+    <button class="btn btn-green" id="recDone" type="button" style="width:100%;justify-content:center;margin-top:16px">I have saved them, continue</button>
+  </div>
+</main>
+
+<!-- DASHBOARD -->
+<div id="dashView" hidden>
+  <header class="obar">
+    <div class="wrap obar-in">
+      <b>Owner Dashboard</b>
+      <span class="badge-mode" id="modeBadge"></span>
+      <a href="index.html" class="olink" target="_blank" rel="noopener noreferrer">View site</a>
+      <button class="olink" id="logout" type="button">Log out</button>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-tab="tProps">Properties</button>
+      <button class="tab" data-tab="tAnn">Announcements</button>
+      <button class="tab" data-tab="tAppt">Appointments <span class="pill" id="apptCount">0</span></button>
+      <button class="tab" data-tab="tLog">Activity log</button>
+    </div>
+
+    <!-- PROPERTIES -->
+    <section class="pane" id="tProps">
+      <form class="card" id="pForm">
+        <h3 id="pFormTitle">Add a property</h3>
+        <input type="hidden" id="pid">
+        <div class="ogrid">
+          <div class="full"><label for="ptitle">Title</label><input id="ptitle" required maxlength="90" placeholder="e.g. Luxury 2 BHK Apartment"></div>
+          <div><label for="ptypeS">Property type</label><select id="ptypeS"><option value="residential">Residential</option><option value="commercial">Commercial</option></select></div>
+          <div><label for="ptransS">For</label><select id="ptransS"><option value="sale">Sale</option><option value="rent">Rent</option></select></div>
+          <div><label for="pprice" id="pPriceLbl">Price (₹)</label><input id="pprice" type="number" min="0" required placeholder="18500000"><small class="loc" id="pPriceHint"></small></div>
+          <div class="full"><label for="ploc">Location</label><input id="ploc" required maxlength="90" placeholder="Bandra East, Mumbai"></div>
+          <div><label for="pbeds">Bedrooms</label><input id="pbeds" type="number" min="0" max="20"></div>
+          <div><label for="pbaths">Bathrooms</label><input id="pbaths" type="number" min="0" max="20"></div>
+          <div><label for="parea">Area (sqft)</label><input id="parea" type="number" min="0"></div>
+          <div><label for="poname">Contact name</label><input id="poname" maxlength="60"></div>
+          <div><label for="popho">Contact phone</label><input id="popho" type="tel" placeholder="+91"></div>
+          <div class="full"><label for="pdesc">Description</label><textarea id="pdesc" maxlength="1500" placeholder="Floor, facing, amenities, parking, society, availability..."></textarea></div>
+          <div class="full"><label>Photos</label>
+            <label class="drop" for="pfiles">📷 Click to add photos (JPG/PNG, up to 10)<input id="pfiles" type="file" accept="image/*" multiple hidden></label>
+            <div class="prev" id="prev"></div>
+            <small class="loc">First photo is the cover. Photos are resized automatically.</small></div>
+        </div>
+        <div id="pmsg" role="status"></div>
+        <div class="mact"><button class="btn btn-green" id="pSave" type="submit">Save property</button><button class="btn-out" id="pCancel" type="button" hidden>Cancel edit</button></div>
+      </form>
+      <h3 class="oh">Your listings</h3>
+      <div class="olist" id="pList"></div>
+    </section>
+
+    <!-- ANNOUNCEMENTS -->
+    <section class="pane" id="tAnn" hidden>
+      <form class="card" id="aForm">
+        <h3 id="aFormTitle">Add an announcement</h3>
+        <input type="hidden" id="aid">
+        <div class="ogrid">
+          <div class="full"><label for="atitle">Title</label><input id="atitle" required maxlength="90"></div>
+          <div><label for="acat">Category</label><select id="acat"><option>Festival</option><option>Company</option><option>Property</option><option>Notice</option></select></div>
+          <div><label for="adate">Date</label><input id="adate" type="date" required></div>
+          <div class="full"><label for="atext">Message</label><textarea id="atext" required maxlength="1200"></textarea></div>
+          <div class="full"><label>Image (optional)</label><input id="afile" type="file" accept="image/*"><div class="prev" id="aprev"></div></div>
+        </div>
+        <div id="amsg" role="status"></div>
+        <div class="mact"><button class="btn btn-green" type="submit">Save announcement</button><button class="btn-out" id="aCancel" type="button" hidden>Cancel edit</button></div>
+      </form>
+      <h3 class="oh">Published</h3>
+      <div class="olist" id="aList"></div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section class="pane" id="tAppt" hidden>
+      <h3 class="oh" style="margin-top:20px">Visit requests</h3>
+      <div class="olist" id="apList"></div>
+    </section>
+
+    <!-- ACTIVITY LOG -->
+    <section class="pane" id="tLog" hidden>
+      <h3 class="oh" style="margin-top:20px">Owner activity (latest 100)</h3>
+      <div class="olist" id="logList"></div>
+    </section>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/owner.js"></script>
+</body>
+</html>

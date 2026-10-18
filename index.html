@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanjeev's Gharkul Real Estate Consultancy | Bandra East, Mumbai</title>
+<meta name="description" content="Real estate consultancy in Bandra East, Mumbai since 1994. Sale, purchase, rent/lease, stamp duty & registration and property liasoning.">
+<link rel="icon" href="https://gharkul.co.in/images/logo-white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#home">
+        <span class="logo"><img src="https://gharkul.co.in/images/logo-white.png" alt="Gharkul logo"></span>
+        <span><b>Sanjeev's Gharkul</b><small>Real Estate Consultancy</small></span>
+      </a>
+      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+      <div class="links" id="links">
+        <a class="on" href="#home">Home</a>
+        <a href="#properties">Properties</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#announcements">Announcements</a>
+        <a href="#contact">Contact</a>
+        <button class="toggle" id="theme" type="button">🌙 Dark</button>
+        <a class="heartlink" id="heartNav" href="#properties" aria-label="Saved properties">♡<span class="hcount" id="hcount">0</span></a>
+        <a class="btn btn-green" id="bookBtnNav" href="#book">Book Appointment</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <div class="hero">
+    <div class="wrap">
+      <span class="badge">29+ Years · Since 1994 · Mumbai</span>
+      <h1>Find a Place You Can Truly <span>Call Home</span></h1>
+      <p>Trusted real estate consultancy in Bandra East. Honest, prompt and accurate advice for buying, selling and renting residential and commercial properties.</p>
+      <div class="cta">
+        <a class="btn btn-green" href="#services">Explore Services</a>
+        <a class="btn btn-ghost" href="#contact">Contact Consultant</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search">
+    <div class="wrap">
+      <form id="searchForm">
+        <div><label for="s1">Looking for</label>
+          <select id="s1"><option>Buy</option><option>Rent / Lease</option></select></div>
+        <div><label for="s2">Property type</label>
+          <select id="s2"><option>Residential</option><option>Commercial</option></select></div>
+        <div><label for="s3">Location</label>
+          <input id="s3" placeholder="e.g. Bandra East, Worli" value=""></div>
+        <div><label for="s4">Budget</label>
+          <select id="s4"><option>Any budget</option><option>Under ₹1 Cr</option><option>₹1 Cr – ₹3 Cr</option><option>₹3 Cr – ₹5 Cr</option><option>Above ₹5 Cr</option></select></div>
+        <button class="btn btn-green" type="submit">Search Properties</button>
+      </form>
+    </div>
+  </div>
+
+  <section id="properties">
+    <div class="wrap">
+      <div class="title-c"><h2>Properties</h2><i></i><p>Find the property that fits your needs.</p></div>
+      <div class="props">
+        <aside class="card filters" aria-label="Filters">
+          <h4>Property type</h4>
+          <label class="r"><input type="radio" name="ptype" value="all" checked> All</label>
+          <label class="r"><input type="radio" name="ptype" value="residential"> Residential</label>
+          <label class="r"><input type="radio" name="ptype" value="commercial"> Commercial</label>
+          <h4>Transaction</h4>
+          <label class="r"><input type="radio" name="ptrans" value="all" checked> All</label>
+          <label class="r"><input type="radio" name="ptrans" value="sale"> Sale</label>
+          <label class="r"><input type="radio" name="ptrans" value="rent"> Rent</label>
+          <h4>Bedrooms</h4>
+          <label class="r"><input type="radio" name="pbeds" value="any" checked> Any</label>
+          <label class="r"><input type="radio" name="pbeds" value="1"> 1+</label>
+          <label class="r"><input type="radio" name="pbeds" value="2"> 2+</label>
+          <label class="r"><input type="radio" name="pbeds" value="3"> 3+</label>
+          <button class="btn btn-green" id="applyF" type="button">Apply Filters</button>
+        </aside>
+        <div>
+          <div class="toolbar"><input id="pq" placeholder="Search by location, property name or area" aria-label="Search properties"><button class="btn-out" id="savedBtn" type="button">♥ Saved (0)</button></div>
+          <div class="pgrid" id="pgrid"><div class="empty">Loading properties…</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <div class="head" style="margin-bottom:0"><h2>Founder – Mr. Sanjeev Ganpat Bhabal</h2></div>
+        <p>Mr. Sanjeev Ganpat Bhabal is the founder and proprietor of Gharkul Real Estate Consultancy. A Mumbai University graduate (1993), he has been running a real estate consultancy and advisory firm since 1994.</p>
+        <p>He is recognised not as a salesperson but as a valuable advisor and real estate consultant. His understanding of the area and its properties lets him offer the best options for each client, with an honest approach to the sale and purchase of residential and commercial properties and a win-win outcome as the aim.</p>
+        <p>Our logo shows a bird picking a dreamstick to build a home. We stand for the same: helping buyers build their homes and turning our promise into reality.</p>
+        <div class="stats">
+          <div><b>1994</b><span>Established</span></div>
+          <div><b>29+</b><span>Years of experience</span></div>
+          <div><b>5</b><span>Core services</span></div>
+        </div>
+      </div>
+      <img class="founder" src="images/founder.jpeg" alt="Mr. Sanjeev Ganpat Bhabal, founder of Gharkul Real Estate Consultancy" loading="lazy">
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Why Sanjeev's Gharkul Real Estate Consultancy?</h2></div>
+      <div class="grid g4 why">
+        <div class="card"><h3>Experience</h3><p>With over 29 years of experience in this industry, we ensure property owners get the best possible outcome.</p></div>
+        <div class="card"><h3>The Top Choice</h3><p>We offer a plethora of options to our clients and ensure the best possible solutions for their various real estate requirements.</p></div>
+        <div class="card"><h3>Determination</h3><p>We're determined in our mission to give you exactly what fits our client's needs.</p></div>
+        <div class="card"><h3>Skilled Personnel</h3><p>Our team is actively involved with our clients' queries and is easily approachable in case of need.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Our Services</h2><p>Residential and commercial property services in Bandra East and across Mumbai.</p></div>
+      <div class="grid g3 svc">
+        <div class="card"><div class="ic"><img src="https://gharkul.co.in/icons/sales.png" alt=""></div><h3>Sale (Residential/Commercial)</h3><p>List and sell your property with honest, accurate advice.</p></div>
+        <div class="card"><div class="ic"><img src="https://gharkul.co.in/icons/rent.png" alt=""></div><h3>Buy (Residential/Commercial)</h3><p>Find the right home or commercial space for your requirement.</p></div>
+        <div class="card"><div class="ic"><img src="https://gharkul.co.in/icons/purchase.png" alt=""></div><h3>Rent/Lease (Residential/Commercial)</h3><p>Rental and lease options matched to your needs.</p></div>
+        <div class="card"><div class="ic"><img src="https://gharkul.co.in/icons/stamp.png" alt=""></div><h3>Stamp Duty &amp; Registration</h3><p>Support with stamp duty and registration formalities.</p></div>
+        <div class="card"><div class="ic"><img src="https://gharkul.co.in/icons/property.png" alt=""></div><h3>Property Liasoning</h3><p>Liasoning support for a smooth transaction.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid g3">
+      <div class="card"><h3>Our Vision</h3><p style="margin-top:8px">To give honest, prompt and accurate advice to customers in buying and selling their homes, maintain long-term relationships in the real estate market, and always uphold the highest level of integrity, honesty and cordial relationships.</p></div>
+      <div class="card"><h3>Our Mission</h3><p style="margin-top:8px">To lead by encouraging and inspiring clients, deliver exceptional service, and provide accurate, up-to-date information, skilled analysis and sound real estate advice, with integrity, professionalism and innovation.</p></div>
+      <div class="card"><h3>Our Values</h3>
+        <ul class="values">
+          <li>Integrity</li><li>Honesty</li><li>Dedication</li><li>Ethics</li><li>Commitment</li>
+          <li>Fairness</li><li>Flexibility</li><li>Excellence</li><li>Reciprocity</li><li>Customers' utmost satisfaction</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><h2>Channel Partners</h2></div>
+      <div class="partners">
+        <div><img src="https://gharkul.co.in/partner/adani.png" alt="Adani" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/kalpataru.png" alt="Kalpataru" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/leo.png" alt="Leo" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/lodha.png" alt="Lodha" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/raymond.png" alt="Raymond" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/rustomjee.png" alt="Rustomjee" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/SP.png" alt="SP" loading="lazy"></div>
+        <div><img src="https://gharkul.co.in/partner/vaibhav.jpg" alt="Vaibhav" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Awards &amp; Certifications</h2></div>
+      <div class="certs">
+        <img src="https://gharkul.co.in/images/certificate-1.png" alt="Certificate" loading="lazy">
+        <img src="https://gharkul.co.in/images/certificate-3.png" alt="Certificate" loading="lazy">
+        <img src="https://gharkul.co.in/images/certificate-2.png" alt="Certificate" loading="lazy">
+        <img src="https://gharkul.co.in/images/certificate-4.png" alt="Certificate" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="announcements" style="padding-top:0">
+    <div class="wrap">
+      <div class="title-c"><h2>Announcements</h2><i></i><p>Festival notices, company updates and new listings.</p></div>
+      <div class="grid g3" id="agrid"></div>
+    </div>
+  </section>
+
+  <section id="testimonials" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Client Testimonials</h2><p>Gharkul Real Estate consultants are truly professional and honest with no hidden agenda. Expect cordial interaction, prompt action and financially reasonable and considerate service.</p></div>
+      <div class="grid g2 quote">
+        <div class="card">
+          <p>I take pleasure in writing my review about the exceptional nature and cooperative approach of Mr Sanjiv Bhabal. His approach towards his clients is quite friendly. I highly recommend my friends and relatives to consult Mr Sanju Bhabal in case they need to make any deal in buying or selling the house.</p>
+          <footer><strong>Dr Ajit Desai</strong>Interventional Cardiologist, Addl Director Jaslok Cardiology</footer>
+        </div>
+        <div class="card">
+          <p>Very humble, very transparent, trustworthy, genuine transaction. I have done four 5 to 6 transactions with Gharkul and am very satisfied.</p>
+          <footer><strong>Mrs Namrata Nimkar</strong>Retired Principal (IES School) and presently Academic Advisor</footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" style="padding-top:0">
+    <div class="wrap">
+      <div class="title-c"><h2>Book Appointment</h2><i></i><p>Schedule a visit at your convenience.</p></div>
+      <form class="card bookbox" id="bookForm">
+        <label for="bprop">Property</label>
+        <select id="bprop" style="margin-bottom:12px"></select>
+        <div class="sel-prop" id="selProp"></div>
+        <div class="fields">
+          <div><label for="bname">Your name</label><input id="bname" placeholder="Full name" required maxlength="80"></div>
+          <div><label for="bphone">Phone number</label><input id="bphone" type="tel" placeholder="+91" required></div>
+        </div>
+        <h3 style="margin:22px 0 6px;font-size:1.05rem">Select date</h3>
+        <div class="cal">
+          <div class="calhead"><button type="button" id="calPrev" aria-label="Previous month">‹</button><b id="calTitle"></b><button type="button" id="calNext" aria-label="Next month">›</button></div>
+          <div class="calgrid" id="calGrid"></div>
+        </div>
+        <h3 style="margin:22px 0 6px;font-size:1.05rem">Select time</h3>
+        <div class="slots" id="slots"></div>
+        <div id="bmsg" role="status"></div>
+        <button class="btn btn-green" id="bookBtn" type="submit" style="margin-top:20px">Confirm Appointment</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Get in Touch With Us</h2><p>Share your requirement and we will contact you as soon as possible.</p></div>
+      <div class="contact">
+        <div class="card">
+          <ul class="info">
+            <li><span class="dot">📍</span><div><small>Visit us</small>Shop No.2, Opp. MIG Cricket Club, Gandhi Nagar, Bandra East, near Amey Hotel, Mumbai – 400051</div></li>
+            <li><span class="dot">📞</span><div><small>Call us</small><a href="tel:+919867151640">+91 98671 51640</a> / <a href="tel:+919322657581">+91 93226 57581</a></div></li>
+            <li><span class="dot">✉️</span><div><small>Email</small><a href="mailto:sanjeev.gharkul@gmail.com">sanjeev.gharkul@gmail.com</a></div></li>
+          </ul>
+          <h4 style="margin-bottom:8px">Opening Hours</h4>
+          <table class="hours">
+            <tr><td>Mon – Fri</td><td>10:00 am – 8:30 pm</td></tr>
+            <tr><td>Sun</td><td>10:00 am – 2:00 pm</td></tr>
+          </table>
+        </div>
+        <form class="card" id="contactForm">
+          <div class="fields">
+            <div><label for="n">Name</label><input id="n" required></div>
+            <div><label for="p">Phone</label><input id="p" type="tel" required></div>
+            <div class="full"><label for="e">Email</label><input id="e" type="email"></div>
+            <div class="full"><label for="m">Message</label><textarea id="m" placeholder="Tell us what you are looking for"></textarea></div>
+            <div class="full"><button class="btn btn-green" type="submit">Send on WhatsApp</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox" id="mbody"></div></div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="logo-box"><img src="https://gharkul.co.in/images/logo-white.png" alt="Gharkul"></span>
+        <p>Sanjeev's Gharkul Real Estate Consultancy. Serving Bandra East, South Mumbai and Mumbai Suburban since 1994.</p>
+        <p style="margin-top:12px"><a href="https://www.facebook.com/profile.php?id=100064525020144" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/sanjeevs_gharkul" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+      <div><h4>Quick Links</h4><ul>
+        <li><a href="#home">Home</a></li><li><a href="#properties">Properties</a></li><li><a href="#about">About Us</a></li><li><a href="#announcements">Announcements</a></li><li><a href="#services">Our Services</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Contact Us</a></li></ul></div>
+      <div><h4>Our Services</h4><ul>
+        <li>Sale (Residential/Commercial)</li><li>Buy (Residential/Commercial)</li><li>Rent/Lease (Residential/Commercial)</li><li>Stamp Duty &amp; Registration</li><li>Property Liasoning</li></ul></div>
+    </div>
+    <div class="copy">Demo recreation. Content and branding © Sanjeev's Gharkul Real Estate Consultancy – <a href="https://gharkul.co.in/" target="_blank" rel="noopener">gharkul.co.in</a></div>
+  </div>
+</footer>
+
+<div class="float">
+  <a class="wa" href="https://api.whatsapp.com/send?phone=919322657581&text=Hi," target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+  <a class="ph" href="tel:+919867151640" aria-label="Call">📞</a>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

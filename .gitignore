@@ -1,0 +1,4 @@
+serviceAccountKey.json
+*.pem
+.env
+node_modules/
